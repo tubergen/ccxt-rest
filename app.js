@@ -22,6 +22,7 @@ app.use(function (req, res, next) {
   );
   next();
 });
+
 var oasTools = require("oas-tools");
 var jsyaml = require("js-yaml");
 var serverPort = config.port;
@@ -76,8 +77,6 @@ app.use("/info", function (req, res) {
 
 var server;
 
-console.log("SERVER");
-console.log("DB: ", { db });
 function start(callback) {
   db.migrate().then(() => {
     jwtHelper.initialize().then(() => {

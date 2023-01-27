@@ -12,8 +12,6 @@ const dbConfig = ccxtConfig.dbConfigPath
   : require(`${__dirname}/../config/database/${env}.js`);
 const db = {};
 
-console.log("dbConfig");
-
 if (
   dbConfig.dialect &&
   dbConfig.dialect.toLowerCase() == "sqlite" &&
@@ -31,9 +29,6 @@ let sequelize = new Sequelize(
   dbConfig.password,
   dbConfig
 );
-
-console.log("sequelize: ", { sequelize });
-console.log("PROCESS.ENV", { env: process.env });
 
 fs.readdirSync(__dirname)
   .filter((file) => {
@@ -59,18 +54,10 @@ Object.keys(db).forEach((modelName) => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-console.log("MIGRATE");
 db.migrate = async function () {
   const sequelize = new Sequelize(dbConfig);
   // Updated according to
   // https://stackoverflow.com/questions/72003461/sequelize-umzug-migrations-error-invalid-umzug-storage
-  console.log("SEQUELIZE", { sequelize });
-  console.log("DBCONFIG", { dbConfig });
-  console.log("ENV", { env });
-
-  console.log("sequelize.getQueryInterface()", {
-    getQueryInterface: sequelize.getQueryInterface(),
-  });
   const umzug = new Umzug({
     migrations: {
       glob: "api/migrations/*.js",
