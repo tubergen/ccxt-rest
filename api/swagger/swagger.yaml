@@ -10,20 +10,20 @@ info:
     name: "MIT"
     url: "https://github.com/ccxt-rest/ccxt-rest/blob/master/LICENSE.txt"
 servers:
-  - url: 'http://localhost:3000/'
+  - url: "http://localhost:3000/"
 tags:
   - name: Authentication API
     description: >-
       APIs that manage [creation](/#createPrivateConnection) / [deletion](/#deletePrivateConnection) / [retrieving](/#getone) of exchange connections. 
-      
+
 
       Most [Public Data APIs](/#ccxt-rest-public-data-api) by most exchanges can be used without providing the API Key and Secret. 
-      
-      
+
+
       For example, you get retrieve the market of binance by doing `GET:/exchange/binance/market` directly and would be able to get
       the markets of binance. 
-      
-      
+
+
       But some exchanges though would require you to use an API Key and Secret even when accessing their Public Data API. For 
       example, for cointiger, if you want to retrieve its market and you do `GET:/exchange/cointiger/market`, you will a `403` error
       (_i.e. meaning you were unauthorized to access it_). Thus, to use that api of continger, you would first have to provide your
@@ -32,7 +32,7 @@ tags:
       coiniger - i.e. `GET:/exchange/cointiger/market -H "Authorization: Bearer xxx.yyy.zzz"` and this time, your request will push 
       through and would be able to get cointiger's market.
 
-      
+
       Furthemore, all [Private Data APIs](/#ccxt-rest-private-data-api) of all exchanges would require API Key and Secret. Thus,
       although `GET:/exchange/binance/market` would work, doing `GET:/exchange/binance/balances` will not. You'd have to provide first
       binance your API Key and Secret like `POST:/exchange/binance -d {"id":"myBinance","apiKey":"binance-key","secret":"s3cret"}`, to
@@ -62,8 +62,143 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref : "#/components/schemas/Exchange"
-                example: ["_1btcxe","acx","anxpro","anybits","bcex","bequant","bibox","bigone","binance","binanceje","bit2c","bitbank","bitbay","bitfinex","bitfinex2","bitflyer","bitforex","bithumb","bitibu","bitkk","bitlish","bitmarket","bitmex","bitsane","bitso","bitstamp","bitstamp1","bittrex","bitz","bl3p","bleutrade","braziliex","btcalpha","btcbox","btcchina","btcexchange","btcmarkets","btctradeim","btctradeua","btcturk","buda","bxinth","ccex","cex","chbtc","chilebit","cobinhood","coinbase","coinbaseprime","coinbasepro","coincheck","coinegg","coinex","coinexchange","coinfalcon","coinfloor","coingi","coinmarketcap","coinmate","coinnest","coinone","coinspot","cointiger","coolcoin","coss","crex24","crypton","cryptopia","deribit","dsx","ethfinex","exmo","exx","fcoin","fcoinjp","flowbtc","foxbit","fybse","fybsg","gateio","gdax","gemini","getbtc","hadax","hitbtc","hitbtc2","huobipro","huobiru","ice3x","independentreserve","indodax","itbit","jubi","kkex","kraken","kucoin","kucoin2","kuna","lakebtc","lbank","liqui","liquid","livecoin","luno","lykke","mandala","mercado","mixcoins","negociecoins","nova","okcoincny","okcoinusd","okex","paymium","poloniex","rightbtc","southxchange","stronghold","surbitcoin","theocean","therock","tidebit","tidex","uex","upbit","urdubit","vaultoro","vbtc","virwox","xbtce","yobit","zaif","zb"]
+                  $ref: "#/components/schemas/Exchange"
+                example:
+                  [
+                    "_1btcxe",
+                    "acx",
+                    "anxpro",
+                    "anybits",
+                    "bcex",
+                    "bequant",
+                    "bibox",
+                    "bigone",
+                    "binance",
+                    "binanceje",
+                    "bit2c",
+                    "bitbank",
+                    "bitbay",
+                    "bitfinex",
+                    "bitfinex2",
+                    "bitflyer",
+                    "bitforex",
+                    "bithumb",
+                    "bitibu",
+                    "bitkk",
+                    "bitlish",
+                    "bitmarket",
+                    "bitmex",
+                    "bitsane",
+                    "bitso",
+                    "bitstamp",
+                    "bitstamp1",
+                    "bittrex",
+                    "bitz",
+                    "bl3p",
+                    "bleutrade",
+                    "braziliex",
+                    "btcalpha",
+                    "btcbox",
+                    "btcchina",
+                    "btcexchange",
+                    "btcmarkets",
+                    "btctradeim",
+                    "btctradeua",
+                    "btcturk",
+                    "buda",
+                    "bxinth",
+                    "ccex",
+                    "cex",
+                    "chbtc",
+                    "chilebit",
+                    "cobinhood",
+                    "coinbase",
+                    "coinbaseprime",
+                    "coinbasepro",
+                    "coincheck",
+                    "coinegg",
+                    "coinex",
+                    "coinexchange",
+                    "coinfalcon",
+                    "coinfloor",
+                    "coingi",
+                    "coinmarketcap",
+                    "coinmate",
+                    "coinnest",
+                    "coinone",
+                    "coinspot",
+                    "cointiger",
+                    "coolcoin",
+                    "coss",
+                    "crex24",
+                    "crypton",
+                    "cryptopia",
+                    "deribit",
+                    "dsx",
+                    "ethfinex",
+                    "exmo",
+                    "exx",
+                    "fcoin",
+                    "fcoinjp",
+                    "flowbtc",
+                    "foxbit",
+                    "fybse",
+                    "fybsg",
+                    "gateio",
+                    "gdax",
+                    "gemini",
+                    "getbtc",
+                    "hadax",
+                    "hitbtc",
+                    "hitbtc2",
+                    "huobipro",
+                    "huobiru",
+                    "ice3x",
+                    "independentreserve",
+                    "indodax",
+                    "itbit",
+                    "jubi",
+                    "kkex",
+                    "kraken",
+                    "kucoin",
+                    "kucoin2",
+                    "kuna",
+                    "lakebtc",
+                    "lbank",
+                    "liqui",
+                    "liquid",
+                    "livecoin",
+                    "luno",
+                    "lykke",
+                    "mandala",
+                    "mercado",
+                    "mixcoins",
+                    "negociecoins",
+                    "nova",
+                    "okcoincny",
+                    "okcoinusd",
+                    "okex",
+                    "paymium",
+                    "poloniex",
+                    "rightbtc",
+                    "southxchange",
+                    "stronghold",
+                    "surbitcoin",
+                    "theocean",
+                    "therock",
+                    "tidebit",
+                    "tidex",
+                    "uex",
+                    "upbit",
+                    "urdubit",
+                    "vaultoro",
+                    "vbtc",
+                    "virwox",
+                    "xbtce",
+                    "yobit",
+                    "zaif",
+                    "zb",
+                  ]
                 x-content-type: application/json
         "500":
           description: If an unexpected error occurred
@@ -84,7 +219,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ExchangeResponse'
+                $ref: "#/components/schemas/ExchangeResponse"
         "404":
           description: Exchange with that name is NOT supported
         "500":
@@ -103,7 +238,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/exchangeConfig'
+              $ref: "#/components/schemas/exchangeConfig"
         required: true
       responses:
         "200":
@@ -111,7 +246,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AccessToken'
+                $ref: "#/components/schemas/AccessToken"
         "404":
           description: Exchange with that name is NOT supported
         "500":
@@ -135,17 +270,61 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ExchangeResponse'
+                $ref: "#/components/schemas/ExchangeResponse"
         "404":
           description: Exchange with that name is NOT supported
+        "500":
+          description: If an unexpected error occurred
+  /exchange/{exchangeName}/fetchFundingRates:
+    get:
+      description: Data on the current, most recent, and next funding rates
+      tags:
+        - Public Data API
+      x-swagger-router-controller: exchange
+      operationId: fetchFundingRates
+      parameters:
+        - $ref: "#/components/parameters/exchangeNameParam"
+        - $ref: "#/components/parameters/optionalExchangeSymbolParam"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/FundingRateResponse"
+                x-content-type: application/json
+        "500":
+          description: If an unexpected error occurred
+  /exchange/{exchangeName}/fetchFundingRate:
+    get:
+      description: Data on the current, most recent, and next funding rates
+      tags:
+        - Public Data API
+      x-swagger-router-controller: exchange
+      operationId: fetchFundingRate
+      parameters:
+        - $ref: "#/components/parameters/exchangeNameParam"
+        - $ref: "#/components/parameters/optionalExchangeSymbolParam"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/FundingRateResponse"
+                x-content-type: application/json
         "500":
           description: If an unexpected error occurred
   /exchange/{exchangeName}/markets:
     get:
       description: >-
         Get the markets of the exchange referenced by the {exchangeName}.
-        
-        
+
+
         <br/> *Parameters listed here are common to all exchanges. But any other parameter passed would be forwarded as well into the exchange.*
       security:
         - bearerAuth: []
@@ -163,7 +342,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/MarketResponse'
+                  $ref: "#/components/schemas/MarketResponse"
                 x-content-type: application/json
         "400":
           description: If the exchange itself complained about the parameters passed
@@ -183,8 +362,8 @@ paths:
     get:
       description: >-
         Get the order book of the exchange referenced by the {exchangeName} and `?symbol=`. 
-        
-        
+
+
         <br/> *Parameters listed here are common to all exchanges. But any other parameter passed would be forwarded as well into the exchange.*
       security:
         - bearerAuth: []
@@ -216,7 +395,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/OrderBookResponse'
+                  $ref: "#/components/schemas/OrderBookResponse"
                 x-content-type: application/json
         "400":
           description: If the exchange itself complained about the parameters passed
@@ -236,8 +415,8 @@ paths:
     get:
       description: >-
         Get the Level 2 Order Book of the exchange referenced by the {exchangeName} and `?symbol=`.
-        
-        
+
+
         <br/> *Parameters listed here are common to all exchanges. But any other parameter passed would be forwarded as well into the exchange.*
       security:
         - bearerAuth: []
@@ -269,7 +448,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/OrderBookResponse'
+                  $ref: "#/components/schemas/OrderBookResponse"
                 x-content-type: application/json
         "400":
           description: If the exchange itself complained about the parameters passed
@@ -287,10 +466,10 @@ paths:
           description: If the exchange itself could not be reached because of some network error
   /exchange/{exchangeName}/trades:
     get:
-      description: >- 
+      description: >-
         Get the trades of the exchange referenced by the {exchangeName} and `?symbol=`.
-        
-        
+
+
         <br/> *Parameters listed here are common to all exchanges. But any other parameter passed would be forwarded as well into the exchange.*
       security:
         - bearerAuth: []
@@ -330,7 +509,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/TradeResponse'
+                  $ref: "#/components/schemas/TradeResponse"
                 x-content-type: application/json
         "400":
           description: If the exchange itself complained about the parameters passed
@@ -350,8 +529,8 @@ paths:
     get:
       description: >-
         Get the ticker of the exchange referenced by the {exchangeName} and `?symbol=`.
-        
-        
+
+
         <br/> *Parameters listed here are common to all exchanges. But any other parameter passed would be forwarded as well into the exchange.*
       security:
         - bearerAuth: []
@@ -384,7 +563,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TickerResponse'
+                $ref: "#/components/schemas/TickerResponse"
         "400":
           description: If the exchange itself complained about the parameters passed
         "401":
@@ -403,8 +582,8 @@ paths:
     get:
       description: >-
         Get the tickers of the exchange referenced by the {exchangeName} and `?symbol=`.
-        
-        
+
+
         <br/> *Parameters listed here are common to all exchanges. But any other parameter passed would be forwarded as well into the exchange.*
       security:
         - bearerAuth: []
@@ -428,7 +607,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/TickerResponse'
+                  $ref: "#/components/schemas/TickerResponse"
                 x-content-type: application/json
         "400":
           description: If the exchange itself complained about the parameters passed
@@ -448,8 +627,8 @@ paths:
     get:
       description: >-
         Get the balances of the exchange referenced by the {exchangeName}. 
-        
-        
+
+
         <br/> *Parameters listed here are common to all exchanges. But any other parameter passed would be forwarded as well into the exchange.*
       security:
         - bearerAuth: []
@@ -470,7 +649,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BalanceResponse'
+                $ref: "#/components/schemas/BalanceResponse"
         "400":
           description: If the exchange itself complained about the parameters passed
         "401":
@@ -489,8 +668,8 @@ paths:
     get:
       description: >-
         Get the orders of the exchange referenced by the {exchangeName}. 
-        
-        
+
+
         <br/> *Parameters listed here are common to all exchanges. But any other parameter passed would be forwarded as well into the exchange.*
       security:
         - bearerAuth: []
@@ -530,7 +709,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/OrderResponse'
+                  $ref: "#/components/schemas/OrderResponse"
                 x-content-type: application/json
         "400":
           description: If the exchange itself complained about the parameters passed
@@ -550,8 +729,8 @@ paths:
     get:
       description: >-
         Get the open orders of the exchange referenced by the {exchangeName}. 
-        
-        
+
+
         <br/> *Parameters listed here are common to all exchanges. But any other parameter passed would be forwarded as well into the exchange.*
       security:
         - bearerAuth: []
@@ -591,7 +770,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/OrderResponse'
+                  $ref: "#/components/schemas/OrderResponse"
                 x-content-type: application/json
         "400":
           description: If the exchange itself complained about the parameters passed
@@ -611,8 +790,8 @@ paths:
     get:
       description: >-
         Get the closed orders of the exchange referenced by the {exchangeName}.
-        
-        
+
+
         <br/> *Parameters listed here are common to all exchanges. But any other parameter passed would be forwarded as well into the exchange.*
       security:
         - bearerAuth: []
@@ -652,7 +831,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/OrderResponse'
+                  $ref: "#/components/schemas/OrderResponse"
                 x-content-type: application/json
         "400":
           description: If the exchange itself complained about the parameters passed
@@ -672,8 +851,8 @@ paths:
     get:
       description: >-
         Get my trades of the exchange referenced by the {exchangeName}. 
-        
-        
+
+
         <br/> *Parameters listed here are common to all exchanges. But any other parameter passed would be forwarded as well into the exchange.*
       security:
         - bearerAuth: []
@@ -713,7 +892,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/TradeResponse'
+                  $ref: "#/components/schemas/TradeResponse"
                 x-content-type: application/json
         "400":
           description: If the exchange itself complained about the parameters passed
@@ -745,7 +924,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/orderPlacement'
+              $ref: "#/components/schemas/orderPlacement"
         required: false
       responses:
         "200":
@@ -753,7 +932,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OrderResponse'
+                $ref: "#/components/schemas/OrderResponse"
         "400":
           description: If the exchange itself complained about the parameters passed
         "401":
@@ -772,8 +951,8 @@ paths:
     get:
       description: >-
         Retrieves the information of an order on the exchange referenced by the {exchangeName} and {orderId}. 
-        
-        
+
+
         <br/> *Parameters listed here are common to all exchanges. But any other parameter passed would be forwarded as well into the exchange.*
       security:
         - bearerAuth: []
@@ -796,7 +975,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OrderResponse'
+                $ref: "#/components/schemas/OrderResponse"
         "400":
           description: If the exchange itself complained about the parameters passed
         "401":
@@ -812,10 +991,10 @@ paths:
         "504":
           description: If the exchange itself could not be reached because of some network error
     delete:
-      description: >- 
+      description: >-
         Cancel an open order on the exchange referenced by the {exchangeName} and {orderId}. 
-        
-        
+
+
         <br/> *Parameters listed here are common to all exchanges. But any other parameter passed would be forwarded as well into the exchange.*
       security:
         - bearerAuth: []
@@ -838,7 +1017,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OrderResponse'
+                $ref: "#/components/schemas/OrderResponse"
         "400":
           description: If the exchange itself complained about the parameters passed
         "401":
@@ -959,10 +1138,10 @@ components:
             needed in one of the APIs, this iis where you will get it.
         base:
           type: string
-          description: 'The base currency. Given ''BTC/USD'', the base is ''BTC'''
+          description: "The base currency. Given 'BTC/USD', the base is 'BTC'"
         quote:
           type: string
-          description: 'The quote currency. Given ''BTC/USD'', the quote is ''USD'''
+          description: "The quote currency. Given 'BTC/USD', the quote is 'USD'"
         info:
           type: object
           properties: {}
@@ -973,9 +1152,9 @@ components:
             When placing an order, its amount must be divisible by this lot
             value
         limits:
-          $ref: '#/components/schemas/Limits'
+          $ref: "#/components/schemas/Limits"
         precision:
-          $ref: '#/components/schemas/Precision'
+          $ref: "#/components/schemas/Precision"
     TradeResponse:
       required:
         - amount
@@ -1000,7 +1179,7 @@ components:
           type: string
           description: The currency pair of this trade
         side:
-          $ref : "#/components/schemas/Side"
+          $ref: "#/components/schemas/Side"
         price:
           type: number
           description: The price of this trade
@@ -1026,9 +1205,9 @@ components:
           type: string
           description: The currency pair of this order
         type:
-          $ref : "#/components/schemas/OrderType"
+          $ref: "#/components/schemas/OrderType"
         side:
-          $ref : "#/components/schemas/Side"
+          $ref: "#/components/schemas/Side"
         price:
           type: number
           description: The price of this order
@@ -1049,7 +1228,7 @@ components:
             The amount of this order that is still yet to be filled (i.e. this
             can be less than or equal to 'amount')
         status:
-          $ref : "#/components/schemas/OrderStatus"
+          $ref: "#/components/schemas/OrderStatus"
         info:
           type: object
           properties: {}
@@ -1062,7 +1241,187 @@ components:
         - sell
     Exchange:
       type: string
-      enum: ["_1btcxe", "acx", "anxpro", "aofex", "bcex", "bequant", "bibox", "bigone", "binance", "binanceje", "binanceus", "bit2c", "bitbank", "bitbay", "bitfinex", "bitfinex2", "bitflyer", "bitforex", "bithumb", "bitkk", "bitmart", "bitmax", "bitmex", "bitso", "bitstamp", "bitstamp1", "bittrex", "bitvavo", "bitz", "bl3p", "bleutrade", "braziliex", "btcalpha", "btcbox", "btcmarkets", "btctradeim", "btctradeua", "btcturk", "buda", "bw", "bybit", "bytetrade", "cex", "chilebit", "coinbase", "coinbaseprime", "coinbasepro", "coincheck", "coinegg", "coinex", "coinfalcon", "coinfloor", "coingi", "coinmarketcap", "coinmate", "coinone", "coinspot", "coolcoin", "coss", "crex24", "currencycom", "deribit", "digifinex", "dsx", "eterbase", "exmo", "exx", "fcoin", "fcoinjp", "flowbtc", "foxbit", "ftx", "fybse", "gateio", "gemini", "hbtc", "hitbtc", "hollaex", "huobipro", "huobiru", "ice3x", "idex", "independentreserve", "indodax", "itbit", "kkex", "kraken", "kucoin", "kuna", "lakebtc", "latoken", "lbank", "liquid", "livecoin", "luno", "lykke", "mercado", "mixcoins", "oceanex", "okcoin", "okex", "paymium", "poloniex", "probit", "qtrade", "rightbtc", "southxchange", "stex", "stronghold", "surbitcoin", "theocean", "therock", "tidebit", "tidex", "timex", "topq", "upbit", "vaultoro", "vbtc", "whitebit", "xbtce", "yobit", "zaif", "zb"]      
+      enum:
+        [
+          "_1btcxe",
+          "acx",
+          "anxpro",
+          "aofex",
+          "bcex",
+          "bequant",
+          "bibox",
+          "bigone",
+          "binance",
+          "binanceje",
+          "binanceus",
+          "bit2c",
+          "bitbank",
+          "bitbay",
+          "bitfinex",
+          "bitfinex2",
+          "bitflyer",
+          "bitforex",
+          "bithumb",
+          "bitkk",
+          "bitmart",
+          "bitmax",
+          "bitmex",
+          "bitso",
+          "bitstamp",
+          "bitstamp1",
+          "bittrex",
+          "bitvavo",
+          "bitz",
+          "bl3p",
+          "bleutrade",
+          "braziliex",
+          "btcalpha",
+          "btcbox",
+          "btcmarkets",
+          "btctradeim",
+          "btctradeua",
+          "btcturk",
+          "buda",
+          "bw",
+          "bybit",
+          "bytetrade",
+          "cex",
+          "chilebit",
+          "coinbase",
+          "coinbaseprime",
+          "coinbasepro",
+          "coincheck",
+          "coinegg",
+          "coinex",
+          "coinfalcon",
+          "coinfloor",
+          "coingi",
+          "coinmarketcap",
+          "coinmate",
+          "coinone",
+          "coinspot",
+          "coolcoin",
+          "coss",
+          "crex24",
+          "currencycom",
+          "deribit",
+          "digifinex",
+          "dsx",
+          "eterbase",
+          "exmo",
+          "exx",
+          "fcoin",
+          "fcoinjp",
+          "flowbtc",
+          "foxbit",
+          "ftx",
+          "fybse",
+          "gateio",
+          "gemini",
+          "hbtc",
+          "hitbtc",
+          "hollaex",
+          "huobipro",
+          "huobiru",
+          "ice3x",
+          "idex",
+          "independentreserve",
+          "indodax",
+          "itbit",
+          "kkex",
+          "kraken",
+          "kucoin",
+          "kuna",
+          "lakebtc",
+          "latoken",
+          "lbank",
+          "liquid",
+          "livecoin",
+          "luno",
+          "lykke",
+          "mercado",
+          "mixcoins",
+          "oceanex",
+          "okcoin",
+          "okex",
+          "paymium",
+          "poloniex",
+          "probit",
+          "qtrade",
+          "rightbtc",
+          "southxchange",
+          "stex",
+          "stronghold",
+          "surbitcoin",
+          "theocean",
+          "therock",
+          "tidebit",
+          "tidex",
+          "timex",
+          "topq",
+          "upbit",
+          "vaultoro",
+          "vbtc",
+          "whitebit",
+          "xbtce",
+          "yobit",
+          "zaif",
+          "zb",
+        ]
+    FundingRateResponse:
+      type: object
+      # properties:
+      #   info:
+      #     type: array
+      #     description: Info
+      #   symbol:
+      #     type: string
+      #     description: symbol
+      #   markPrice:
+      #     type: number
+      #     description: markPrice
+      #   indexPrice:
+      #     type: number
+      #     description: indexPrice
+      #   interestRate:
+      #     type: number
+      #     description: interestRate
+      #   estimatedSettlePrice:
+      #     type: number
+      #     description: estimatedSettlePrice
+      #   timestamp:
+      #     type: number
+      #     description: timestamp
+      #   datetime:
+      #     type: number
+      #     description: datetime
+      #   fundingRate:
+      #     type: number
+      #     description: fundingRate
+      #   fundingTimestamp:
+      #     type: number
+      #     description: fundingTimestamp
+      #   fundingDatetime:
+      #     type: string
+      #     description: fundingDatetime
+      #   nextFundingRate:
+      #     type: number
+      #     description: nextFundingRate
+      #   nextFundingTimestamp:
+      #     type: number
+      #     description: nextFundingTimestamp
+      #   nextFundingDatetime:
+      #     type: number
+      #     description: nextFundingDatetime
+      #   previousFundingRate:
+      #     type: number
+      #     description: previousFundingRate
+      #   previousFundingTimestamp:
+      #     type: number
+      #     description: previousFundingTimestamp
+      #   previousFundingDatetime:
+      #     type: number
+      #     description: previousFundingDatetime
     OrderBookResponse:
       required:
         - asks
@@ -1073,12 +1432,12 @@ components:
           type: array
           description: The publicly listed buy orders
           items:
-            $ref: '#/components/schemas/OrderBookLevel'
+            $ref: "#/components/schemas/OrderBookLevel"
         asks:
           type: array
           description: The publicly listed sell orders
           items:
-            $ref: '#/components/schemas/OrderBookLevel'
+            $ref: "#/components/schemas/OrderBookLevel"
         timestamp:
           type: number
           description: The timestamp associated for this order book
@@ -1108,11 +1467,11 @@ components:
       type: object
       properties:
         amount:
-          $ref: '#/components/schemas/Limit'
+          $ref: "#/components/schemas/Limit"
         price:
-          $ref: '#/components/schemas/Limit'
+          $ref: "#/components/schemas/Limit"
         cost:
-          $ref: '#/components/schemas/Limit'
+          $ref: "#/components/schemas/Limit"
     BalanceResponse:
       required:
         - balances
@@ -1127,7 +1486,7 @@ components:
           type: array
           description: List of balances per currency that you own
           items:
-            $ref: '#/components/schemas/BalanceInfo'
+            $ref: "#/components/schemas/BalanceInfo"
     Precision:
       required:
         - amount
@@ -1152,7 +1511,7 @@ components:
       properties:
         token:
           type: string
-          description: >- 
+          description: >-
             The JWT token that needs to be added into the 'Authorization'
             header with the 'Bearer ' prefix. For example, given a token of xyz,
             do a secured request with 'Authorization: Bearer xyz'
@@ -1174,7 +1533,7 @@ components:
         name:
           type: string
           description: >-
-            The name of the exchange. 
+            The name of the exchange.
         private:
           type: boolean
           description: Whether this exchange is private (has apiKey) or public (no apiKey)
@@ -1202,7 +1561,7 @@ components:
           description: Whether to enable two factor authentication or not
           default: false
         has:
-          $ref: '#/components/schemas/ExchangeHasCapabilities'
+          $ref: "#/components/schemas/ExchangeHasCapabilities"
         urls:
           type: object
           properties: {}
@@ -1280,8 +1639,8 @@ components:
     ExchangeCapability:
       type: string
       enum:
-        - 'true'
-        - 'false'
+        - "true"
+        - "false"
         - emulated
     ExchangeHasCapabilities:
       required:
@@ -1299,6 +1658,8 @@ components:
         - fetchCurrencies
         - fetchDepositAddress
         - fetchFundingFees
+        - fetchFundingRates
+        - fetchFundingRate
         - fetchL2OrderBook
         - fetchMarkets
         - fetchMyTrades
@@ -1319,67 +1680,71 @@ components:
       type: object
       properties:
         CORS:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
         publicAPI:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
         privateAPI:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
         cancelOrder:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
         cancelOrders:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
         createDepositAddress:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
         createOrder:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
         createMarketOrder:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
         createLimitOrder:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
         editOrder:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
         fetchBalance:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
         fetchBidsAsks:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
         fetchClosedOrders:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
         fetchCurrencies:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
         fetchDepositAddress:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
         fetchFundingFees:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
+        fetchFundingRates:
+          $ref: "#/components/schemas/ExchangeCapability"
+        fetchFundingRate:
+          $ref: "#/components/schemas/ExchangeCapability"
         fetchL2OrderBook:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
         fetchMarkets:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
         fetchMyTrades:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
         fetchOHLCV:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
         fetchOpenOrders:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
         fetchOrder:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
         fetchOrderBook:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
         fetchOrderBooks:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
         fetchOrders:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
         fetchTicker:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
         fetchTickers:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
         fetchTrades:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
         fetchTradingFees:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
         fetchTradingLimits:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
         withdraw:
-          $ref : "#/components/schemas/ExchangeCapability"
+          $ref: "#/components/schemas/ExchangeCapability"
     exchangeConfig:
       required:
         - id
@@ -1388,7 +1753,7 @@ components:
         id:
           type: string
           description: >-
-            The unique identifier for this exchange. 
+            The unique identifier for this exchange.
         apiKey:
           type: string
           description: >-
@@ -1419,9 +1784,9 @@ components:
           type: string
           description: The currency pair (base/quote) of the order to be created
         type:
-          $ref : "#/components/schemas/OrderType"
+          $ref: "#/components/schemas/OrderType"
         side:
-          $ref : "#/components/schemas/Side"
+          $ref: "#/components/schemas/Side"
         amount:
           type: number
           description: The amount of currency pair's base that we want to buy or sell
@@ -1438,7 +1803,7 @@ components:
     bearerAuth:
       type: http
       scheme: bearer
-      bearerFormat: JWT  
+      bearerFormat: JWT
   parameters:
     orderIdParam:
       name: orderId
@@ -1483,4 +1848,4 @@ components:
       style: simple
       explode: false
       schema:
-        $ref : "#/components/schemas/Exchange"
+        $ref: "#/components/schemas/Exchange"
