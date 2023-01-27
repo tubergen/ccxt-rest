@@ -461,8 +461,6 @@ paths:
             application/json:
               schema:
                 type: array
-                items:
-                  $ref: "#/components/schemas/FundingRateResponse"
                 x-content-type: application/json
         "500":
           description: If an unexpected error occurred
@@ -483,8 +481,26 @@ paths:
             application/json:
               schema:
                 type: array
-                items:
-                  $ref: "#/components/schemas/FundingRateResponse"
+                x-content-type: application/json
+        "500":
+          description: If an unexpected error occurred
+  /exchange/{exchangeName}/fetchOpenInterest:
+    get:
+      description: Data on the current, most recent, and next funding rates
+      tags:
+        - Public Data API
+      x-swagger-router-controller: exchange
+      operationId: fetchOpenInterest
+      parameters:
+        - $ref: "#/components/parameters/exchangeNameParam"
+        - $ref: "#/components/parameters/requiredExchangeSymbolParam"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
                 x-content-type: application/json
         "500":
           description: If an unexpected error occurred
