@@ -1,27 +1,29 @@
-'use strict';
+"use strict";
+const { DataTypes } = require("sequelize");
+
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('JwtData', {
+  up: async ({ context: sequelize }) => {
+    await sequelize.getQueryInterface().createTable("JwtData", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: DataTypes.INTEGER,
       },
       secret: {
-        type: Sequelize.STRING
+        type: DataTypes.STRING,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: DataTypes.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: DataTypes.DATE,
+      },
     });
   },
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('JwtData');
-  }
+  down: async ({ context: sequelize }) => {
+    await sequelize.getQueryInterface().dropTable("JwtData");
+  },
 };
