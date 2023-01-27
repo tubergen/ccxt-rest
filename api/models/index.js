@@ -1,34 +1,21 @@
-"use strict";
+'use strict';
 
-const fs = require("fs");
-const path = require("path");
-const Sequelize = require("sequelize");
+const fs = require('fs');
+const path = require('path');
+const Sequelize = require('sequelize');
 const { Umzug, SequelizeStorage } = require("umzug");
 const basename = path.basename(__filename);
-const ccxtConfig = require("../config");
-const env = ccxtConfig.env || "production";
-const dbConfig = ccxtConfig.dbConfigPath
-  ? require(ccxtConfig.dbConfigPath)
-  : require(`${__dirname}/../config/database/${env}.js`);
+const ccxtConfig = require('../config')
+const env = ccxtConfig.env || 'production';
+const dbConfig = ccxtConfig.dbConfigPath ? require(ccxtConfig.dbConfigPath) : require(`${__dirname}/../config/database/${env}.js`);
 const db = {};
 
-if (
-  dbConfig.dialect &&
-  dbConfig.dialect.toLowerCase() == "sqlite" &&
-  dbConfig.storage &&
-  !dbConfig.storage.toLowerCase().includes("memory")
-) {
-  fs.mkdirSync(path.dirname(path.resolve(dbConfig.storage)), {
-    recursive: true,
-  });
+if (dbConfig.dialect && dbConfig.dialect.toLowerCase() == 'sqlite' 
+    && (dbConfig.storage && !dbConfig.storage.toLowerCase().includes('memory'))) {
+      fs.mkdirSync(path.dirname(path.resolve(dbConfig.storage)), {recursive:true});
 }
 
-let sequelize = new Sequelize(
-  dbConfig.database,
-  dbConfig.username,
-  dbConfig.password,
-  dbConfig
-);
+let sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, dbConfig);
 
 fs.readdirSync(__dirname)
   .filter((file) => {

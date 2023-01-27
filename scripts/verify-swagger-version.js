@@ -4,7 +4,7 @@ const fs = require('fs');
 const yaml = require('js-yaml');
 
 function verify_swagger_version() {
-    const swagger_yaml = yaml.safeLoad(fs.readFileSync('./api/swagger/swagger.yaml'), 'utf8');
+    const swagger_yaml = yaml.load(fs.readFileSync('./api/swagger/swagger.yaml'), 'utf8');
     const swagger_version = swagger_yaml.info.version
 
     const package_json = JSON.parse(fs.readFileSync('./package.json'));
