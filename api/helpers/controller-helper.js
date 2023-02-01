@@ -34,29 +34,29 @@ function handleError(req, res, label, error) {
       res.status(500).send();
     }
 }
-  
+
 async function execute(req, res, parameterNamesOrParameterValuesExtractor, functionName, responseTransformer) {
     try {
       let context = {}
-  
+
       const exchange = await getExchangeFromRequest(req)
       let parameterValues
       if (typeof(parameterNamesOrParameterValuesExtractor) === 'function') {
         parameterValues = parameterNamesOrParameterValuesExtractor(req, context)
       } else {
         parameterValues = parameterNamesOrParameterValuesExtractor.map(parameterName => req.swagger.params[parameterName].value)
-  
+
         // extract exchange-specific params
         let params = Object.assign({}, req.query)
         parameterNamesOrParameterValuesExtractor.forEach(paramName => {
           delete params[paramName]
         })
-  
+
         // add exchange-specific params to parameterValues
         parameterValues.push(params)
       }
       context.parameterValues = parameterValues
-  
+
       if (exchange.has[functionName] === false) {
         console.error(`[${exchange.name}] does not support ${functionName}`)
         throw new ccxtRestErrors.UnsupportedApiError(`${exchange.name}#${functionName} is not supported`)
@@ -72,7 +72,7 @@ async function execute(req, res, parameterNamesOrParameterValuesExtractor, funct
       handleError(req, res, functionName, error)
     }
 }
-  
+
 async function getExchangeFromRequest(req) {
     let exchangeName = getExchangeName(req)
     let exchangeId = getExchangeId(req)
@@ -98,7 +98,7 @@ function getExchangeId(req) {
   if (req.headers && req.headers.authorization && req.headers.authorization.startsWith('Bearer ')) {
     let token = req.headers.authorization.split('Bearer ')[1]
     let decoded = jwtHelper.decode(token)
-    
+
     return decoded.sub
   }
   return null
@@ -114,7 +114,7 @@ function renderExchange(exchange, res) {
 
 module.exports = {
     execute : execute,
-    getExchangeFromRequest : getExchangeFromRequest, 
+    getExchangeFromRequest : getExchangeFromRequest,
     getExchangeId : getExchangeId,
     getExchangeName : getExchangeName,
     handleError : handleError,

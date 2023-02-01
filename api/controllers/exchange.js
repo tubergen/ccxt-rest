@@ -28,6 +28,7 @@ module.exports = {
   tickers: tickers,
   fetchFundingRates: fetchFundingRates,
   fetchFundingRate: fetchFundingRate,
+  fetchOpenInterest: fetchOpenInterest,
   balances: balances,
   createOrder: createOrder,
   cancelOrder: cancelOrder,
@@ -197,6 +198,16 @@ function fetchFundingRate(req, res) {
   })
 }
 
+function fetchOpenInterest(req, res) {
+  _doExchangeSpecificOrDefault(req, res, 'fetchOpenInterest', (req, res) => {
+    execute(req, res, 
+      ['symbol'], 
+      'fetchOpenInterest', 
+      (response) => Object.keys(response).sort().map(symbol => new exchange_response.TickerResponse(response[symbol]))
+    )
+  })
+}
+
 function balances(req, res) {
   _doExchangeSpecificOrDefault(req, res, 'balances', (req, res) => {
     execute(req, res, 
@@ -340,4 +351,3 @@ function _doExchangeSpecificOrDefault(req, res, overrideFunctionName, defaultBeh
     handleError(req, res, overrideFunctionName, error)
   }
 }
-

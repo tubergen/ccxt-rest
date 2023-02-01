@@ -1,33 +1,38 @@
-'use strict';
+"use strict";
+
+const { DataTypes } = require("sequelize");
+
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Exchanges', {
+  up: async ({ context: sequelize }) => {
+    console.log("sequelizesequelizesequelize: ", { sequelize });
+
+    await sequelize.getQueryInterface().createTable("Exchanges", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: DataTypes.INTEGER,
       },
       exchangeName: {
-        type: Sequelize.STRING
+        type: DataTypes.STRING,
       },
       exchangeId: {
-        type: Sequelize.STRING
+        type: DataTypes.STRING,
       },
       params: {
-        type: Sequelize.BLOB
+        type: DataTypes.BLOB,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: DataTypes.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: DataTypes.DATE,
+      },
     });
   },
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Exchanges');
-  }
+  down: async ({ context: sequelize }) => {
+    await sequelize.getQueryInterface().dropTable("Exchanges");
+  },
 };

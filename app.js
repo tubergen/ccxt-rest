@@ -93,7 +93,6 @@ function start(callback) {
     })
 }
 
-start()
 
 // for testing
 module.exports = {

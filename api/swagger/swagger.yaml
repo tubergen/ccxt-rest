@@ -444,6 +444,66 @@ paths:
           description: If the exchange integration does NOT support this function
         "504":
           description: If the exchange itself could not be reached because of some network error
+  /exchange/{exchangeName}/fetchFundingRates:
+    get:
+      description: Data on the current, most recent, and next funding rates
+      tags:
+        - Public Data API
+      x-swagger-router-controller: exchange
+      operationId: fetchFundingRates
+      parameters:
+        - $ref: "#/components/parameters/exchangeNameParam"
+        - $ref: "#/components/parameters/optionalExchangeSymbolParam"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                x-content-type: application/json
+        "500":
+          description: If an unexpected error occurred
+  /exchange/{exchangeName}/fetchFundingRate:
+    get:
+      description: Data on the current, most recent, and next funding rates
+      tags:
+        - Public Data API
+      x-swagger-router-controller: exchange
+      operationId: fetchFundingRate
+      parameters:
+        - $ref: "#/components/parameters/exchangeNameParam"
+        - $ref: "#/components/parameters/optionalExchangeSymbolParam"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                x-content-type: application/json
+        "500":
+          description: If an unexpected error occurred
+  /exchange/{exchangeName}/fetchOpenInterest:
+    get:
+      description: Data on the current, most recent, and next funding rates
+      tags:
+        - Public Data API
+      x-swagger-router-controller: exchange
+      operationId: fetchOpenInterest
+      parameters:
+        - $ref: "#/components/parameters/exchangeNameParam"
+        - $ref: "#/components/parameters/requiredExchangeSymbolParam"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                x-content-type: application/json
+        "500":
+          description: If an unexpected error occurred
   /exchange/{exchangeName}/balances:
     get:
       description: >-
